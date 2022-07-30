@@ -5,17 +5,16 @@ import {
   query,
   orderBy,
   limit,
-  //   getDocs,
   addDoc,
   serverTimestamp,
 } from 'firebase/firestore'
-import { useAuthState } from 'react-firebase-hooks/auth'
+// import { useAuthState } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import ChatMessage from './chatMessage'
 import SignOut from '../site/signOut'
 
 const ChatRoom = () => {
-  const [user] = useAuthState(auth)
+  // const [user] = useAuthState(auth)
 
   const messagesRef = collection(db, 'messages')
   const q = query(messagesRef, orderBy('createdAt'), limit(25))
@@ -32,13 +31,13 @@ const ChatRoom = () => {
     const { uid, photoURL } = auth.currentUser
     try {
       // create new document to firestore
-      const docRef = await addDoc(messagesRef, {
+      await addDoc(messagesRef, {
+        id: +new Date(),
         text: formValue,
         createdAt: serverTimestamp(),
         uid,
         photoURL,
       })
-      //   console.log(docRef)
       setFormValue('')
     } catch (error) {
       console.error(error)
