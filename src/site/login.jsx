@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import SignIn from './signIn'
 import '../assets/css/login.css'
@@ -18,28 +18,25 @@ const Login = () => {
     message: '',
     error: '',
     vis: true,
+    logOrReg: false,
   })
-  // useEffect(() => {
-  //   if (data.userType === undefined) {
-  //     return setData({ ...data, vis: true })
-  //   } else {
-  //     return setData({ ...data, vis: false, type: userType })
-  //   }
-  // }, [data.userType])
+  useEffect(() => {
+    if (userType === undefined) {
+      return
+    } else {
+      return setData((prev) => ({ ...prev, logOrReg: true, type: userType }))
+    }
+  }, [userType])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (userType === undefined) {
-      let msg = await loginWithEmailPassword(data.email, data.password)
-      if (msg.code) {
-        console.log(msg)
-        setData({ ...data, message: msg.name + ' : ' + msg.code, vis: false })
-      } else {
-        console.log(msg)
-      }
-    } else {
-      let msg = await registerWithEmailPassword(data.email, data.password)
-      setData({ ...data, message: msg.name + ' : ' + msg.code })
-    }
+    let msg = await loginWithEmailPassword(data.email, data.password)
+    console.log(msg)
+    setData({ ...data, message: msg.name + ' : ' + msg.code, vis: false })
+  }
+  const handleRegister = async (e) => {
+    let msg = await registerWithEmailPassword(data.email, data.password)
+    setData({ ...data, message: msg.name + ' : ' + msg.code })
   }
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
@@ -89,96 +86,161 @@ const Login = () => {
         </div>
       )}
       <div className="col-md-12 form-center text-center">
-        <div style={{ display: 'flex' }}>
-          <div className="col-md-6 d-none d-sm-block">
-            <img
-              className="mb-4"
-              src="./assets/img/logo512.png"
-              alt=""
-              width="200"
-              height="200"
-            />
-          </div>
+        <div
+          className="col-md-6 d-none d-sm-block form-signin"
+          style={{ alignSelf: 'flex-start', maxWidth: 'fit-content' }}
+        >
+          <img
+            className="mb-4"
+            src="./assets/img/logo512.png"
+            alt=""
+            width="200"
+            height="200"
+          />
+        </div>
 
-          <form className="col-md-6 form-signin" style={{ textAlign: 'left' }}>
-            <h1 className="h3 mb-3 font-weight-normal">
-              {userType === undefined ? 'Login' : 'Login sebagai ' + userType}
-            </h1>
-            <label className="sr-only" htmlFor="email">
-              Email
-            </label>
-            <input
-              className="form-control"
-              type="text"
-              name="email"
-              id="email"
-              placeholder="Email address"
-              required
-              autoFocus
-              onChange={handleChange}
-            />
-            <label className="sr-only" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="form-control"
-              type="password"
-              name="password"
-              id="inputPassword"
-              placeholder="Password"
-              required
-              onChange={handleChange}
-            />
+        <form className="col-md-6 form-signin" style={{ textAlign: 'left' }}>
+          <h1 className="h3 mb-3 font-weight-normal">
+            {data.logOrReg ? 'Daftar ' : 'Login '}
+          </h1>
+          <hr />
+          {data.logOrReg ? (
+            <>
+              <label className="sr-only" htmlFor="email">
+                Type
+              </label>
+              <div
+                className="col-md-12"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                }}
+              >
+                <div className="col-md-6 form-check checkbox mb-3">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="type"
+                    value="user"
+                    checked={data.type === 'user'}
+                    onChange={handleChange}
+                  />
+                  <label className="form-check-label">Pengguna</label>
+                </div>
+                <div className="col-md-6 form-check checkbox mb-3">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="type"
+                    checked={data.type === 'mitra'}
+                    value="mitra"
+                    onChange={handleChange}
+                  />
+                  <label className="form-check-label">Mitra</label>
+                </div>
+              </div>
+            </>
+          ) : (
+            ''
+          )}
+          <label className="sr-only" htmlFor="email">
+            Email
+          </label>
+          <input
+            className="form-control"
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Email address"
+            required
+            autoFocus
+            onChange={handleChange}
+          />
+          <label className="sr-only" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="form-control"
+            type="password"
+            name="password"
+            id="inputPassword"
+            placeholder="Password"
+            required
+            onChange={handleChange}
+          />
+          {data.logOrReg ? (
+            <div className="w-100" style={{ height: '25px' }}></div>
+          ) : (
             <div className="form-check checkbox mb-3">
               <input
                 className="form-check-input"
                 type="checkbox"
                 name="isRemember"
                 onChange={() => {
-                  var is = data.isRemember
+                  let is = data.isRemember
                   setData({ ...data, isRemember: !is })
                   // console.log(data.isRemember);
                 }}
               />
               <label className="form-check-label">Ingat saya</label>
             </div>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                textAlign: 'center',
+          )}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              textAlign: 'center',
+            }}
+          >
+            {data.logOrReg ? (
+              <>
+                <button className="btn btn-light" onClick={handleRegister}>
+                  Daftar
+                </button>
+                <p style={{ padding: '15px', margin: 0 }}>- or -</p>
+                <SignIn text="Daftar" />
+              </>
+            ) : (
+              <>
+                <button className="btn btn-light" onClick={handleSubmit}>
+                  Login
+                </button>
+                <p style={{ padding: '15px', margin: 0 }}>- or -</p>
+                <SignIn text="Login" />
+              </>
+            )}
+          </div>
+          <div className="w-100" style={{ height: '25px' }}></div>
+          <hr />
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-around',
+            }}
+          >
+            <span>{data.logOrReg ? 'Sudah ' : 'Buat '}punya akun?</span>
+            <button
+              className="btn btn-link"
+              style={{ color: 'aqua', textDecoration: 'none' }}
+              onClick={(e) => {
+                e.preventDefault()
+                setData({ ...data, logOrReg: !data.logOrReg })
               }}
             >
-              <button className="btn btn-light" onClick={handleSubmit}>
-                Login
-              </button>
-              <p style={{ padding: '15px', margin: 0 }}>- or -</p>
-              <SignIn />
-            </div>
-            <div className="w-100" style={{ height: '25px' }}></div>
-            <hr />
-            {/* <button className="btn btn-light" type="submit">
-              Daftar
+              <b>{data.logOrReg ? 'Login ' : 'Daftar '}Sekarang</b>
+            </button>
+            {/* <button
+              className="btn btn-link"
+              style={{ color: 'aqua', textDecoration: 'none' }}
+              onClick={(e) => setData({ ...data, vis: false })}
+            >
+              <b>Daftar sebagai Mitra</b>
             </button> */}
-            <span>Belum punya akun</span>
-            <br />
-            <button
-              className="btn btn-link"
-              style={{ color: 'aqua', textDecoration: 'none' }}
-              onClick={(e) => setData({ ...data, vis: false })}
-            >
-              <b>Daftar Pengguna</b>
-            </button>
-            <button
-              className="btn btn-link"
-              style={{ color: 'aqua', textDecoration: 'none' }}
-              onClick={(e) => setData({ ...data, vis: false })}
-            >
-              <b>Daftar Mitra</b>
-            </button>
-            <hr />
-          </form>
-        </div>
+          </div>
+          <hr />
+        </form>
       </div>
     </>
   )

@@ -15,7 +15,7 @@ const Hero = () => {
           <div className="hero-content">
             DAFTAR SEKARANG
             <div className="hero-btn-container">
-              <Link to="/login/pengguna">
+              <Link to="/login/user">
                 <button className="btn btn-light">PENGGUNA</button>
               </Link>
               <Link to="/login/mitra">

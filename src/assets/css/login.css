@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 330px;
     padding: 15px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
 .form-center {
@@ -19,4 +19,8 @@
     padding-bottom: 40px;
     background-color: #0c0f22;
     min-height: 768px;
+}
+
+.form-control {
+    margin-bottom: 15px;
 }
