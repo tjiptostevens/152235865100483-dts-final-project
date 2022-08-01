@@ -9,6 +9,7 @@ function App() {
   const [user] = useAuthState(auth)
   return (
     <>
+      {console.log(process.env)}
       <Navbar />
       <div className="App">{user ? <ChatRoom /> : <SignIn />}</div>
     </>
