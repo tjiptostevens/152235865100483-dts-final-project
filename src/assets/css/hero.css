@@ -1,0 +1,30 @@
+.hero {
+    width: 100%;
+    min-height: 50vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero>video {
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-container {
+    position: absolute;
+    top: 50%;
+}
+
+.hero-content {
+    text-align: center;
+    width: 95vw;
+    font-size: 32px;
+}
+
+.hero-btn-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}

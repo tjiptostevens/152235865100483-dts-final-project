@@ -37,10 +37,11 @@ const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider()
   signInWithPopup(auth, provider)
 }
-const registerEmailPassword = async (email, password) => {
+const registerWithEmailPassword = async (email, password) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password)
     console.log('user : ' + user.user)
+    return user
   } catch (error) {
     console.log('error code : ' + error.code)
     console.log('error message : ' + error.message)
@@ -48,10 +49,11 @@ const registerEmailPassword = async (email, password) => {
   }
 }
 
-const loginEmailPassword = async (email, password) => {
+const loginWithEmailPassword = async (email, password) => {
   try {
     const user = await signInWithEmailAndPassword(auth, email, password)
     console.log('user : ' + user.email)
+    return user
   } catch (error) {
     console.log('error code : ' + error.code)
     console.log('error message : ' + error.message)
@@ -84,8 +86,8 @@ export {
   auth,
   db,
   signInWithGoogle,
-  registerEmailPassword,
-  loginEmailPassword,
+  registerWithEmailPassword,
+  loginWithEmailPassword,
   forgotPassword,
   logout,
 }

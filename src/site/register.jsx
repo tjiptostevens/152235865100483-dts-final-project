@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Register = () => {
+const Register = (props) => {
   return (
     <>
-      <div>Register</div>
+      <div>Daftar sebagai {props.type}</div>
     </>
   )
 }
