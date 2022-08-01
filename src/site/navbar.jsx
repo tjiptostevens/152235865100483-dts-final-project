@@ -7,6 +7,7 @@ const Navbar = () => {
   const { width } = useWindow()
   return (
     <>
+      {console.log(width)}
       <nav>
         <NavLink to="/">
           <div className="nav-logo">
