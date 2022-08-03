@@ -6,7 +6,7 @@ import Video from '../components/video'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
-  const [video, setVideo] = useState(true)
+  const [video] = useState(true)
 
   return (
     <>
@@ -35,11 +35,20 @@ const Hero = () => {
                 }}
               ></div>
               {/* Daftar Sekarang */}
-              <div>
-                <small style={{ fontWeight: '300' }}>
-                  <i>DAFTAR SEKARANG</i>
-                </small>
-                <div className="hero-btn-container">
+              <Link to="/login">
+                <div
+                  className="btn btn-light"
+                  style={{
+                    margin: '0 15px',
+                    padding: '5px 50px',
+                    minWidth: '100px',
+                    fontSize: '24px',
+                  }}
+                >
+                  <small style={{ fontWeight: '300' }}>
+                    <i>DAFTAR SEKARANG</i>
+                  </small>
+                  {/* <div className="hero-btn-container">
                   <Link to="/login/user">
                     <button
                       className="btn btn-light"
@@ -66,10 +75,12 @@ const Hero = () => {
                       MITRA
                     </button>
                   </Link>
+                </div> */}
                 </div>
-              </div>
+              </Link>
 
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
+              {/* search */}
+              {/* <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <input
                   className="form-control"
                   type="search"
@@ -77,7 +88,7 @@ const Hero = () => {
                   style={{ margin: '0' }}
                 />
                 <button className="btn btn-light">Cari</button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

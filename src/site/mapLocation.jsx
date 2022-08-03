@@ -5,7 +5,7 @@ const MapLocation = () => {
   return (
     <>
       <div className="mapouter">
-        <div className="gmap_canvas">
+        <div className="gmap-canvas">
           <iframe
             title="coba-maps"
             width="200"

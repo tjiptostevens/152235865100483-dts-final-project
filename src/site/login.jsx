@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState } from 'react'
 import SignIn from './signIn'
 import logo from '../assets/img/logo512.png'
 import '../assets/css/login.css'
 import {
+  auth,
   loginWithEmailPassword,
   registerWithEmailPassword,
 } from '../config/firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  let { userType } = useParams()
-
+  const [user] = useAuthState(auth)
+  const navigate = useNavigate()
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -21,13 +23,14 @@ const Login = () => {
     vis: true,
     logOrReg: false,
   })
-  useEffect(() => {
-    if (userType === undefined) {
-      return
-    } else {
-      return setData((prev) => ({ ...prev, logOrReg: true, type: userType }))
-    }
-  }, [userType])
+  // useEffect(() => {
+  //   if (userType === undefined) {
+  //     return
+  //   } else {
+  //     // functional setData
+  //     return setData((prev) => ({ ...prev, logOrReg: true, type: userType }))
+  //   }
+  // }, [userType])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -42,9 +45,12 @@ const Login = () => {
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
+  if (user) {
+    navigate('/', { replace: true })
+  }
   return (
     <>
-      {console.log(data)}
+      {/* {console.log(data)} */}
       {data.vis === true ? (
         ''
       ) : (
@@ -105,45 +111,7 @@ const Login = () => {
             {data.logOrReg ? 'Daftar ' : 'Login '}
           </h1>
           <hr />
-          {data.logOrReg ? (
-            <>
-              <label className="sr-only" htmlFor="email">
-                Type
-              </label>
-              <div
-                className="col-md-12"
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                }}
-              >
-                <div className="col-md-6 form-check checkbox mb-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="type"
-                    value="user"
-                    checked={data.type === 'user'}
-                    onChange={handleChange}
-                  />
-                  <label className="form-check-label">Pengguna</label>
-                </div>
-                <div className="col-md-6 form-check checkbox mb-3">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="type"
-                    checked={data.type === 'mitra'}
-                    value="mitra"
-                    onChange={handleChange}
-                  />
-                  <label className="form-check-label">Mitra</label>
-                </div>
-              </div>
-            </>
-          ) : (
-            ''
-          )}
+
           <label className="sr-only" htmlFor="email">
             Email
           </label>

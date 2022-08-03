@@ -12,7 +12,7 @@ function App() {
   const [user] = useAuthState(auth)
   return (
     <>
-      {console.log(user)}
+      {/* {console.log(user)} */}
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

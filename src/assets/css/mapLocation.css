@@ -5,7 +5,7 @@
     width: 100vw;
 }
 
-.gmap_canvas {
+.gmap-canvas {
     overflow: hidden;
     background: none !important;
     height: 500px;

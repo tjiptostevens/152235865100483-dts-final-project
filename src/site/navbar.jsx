@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { auth, logout } from '../config/firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import useWindow from '../custom/useWindow'
 import '../assets/css/navbar.css'
 import logo from '../assets/img/logoh.png'
-import useWindow from '../custom/useWindow'
 
 const Navbar = () => {
+  const [user] = useAuthState(auth)
+  const [dropDown, setDropDown] = useState(false)
   const { width } = useWindow()
   return (
     <>
-      {console.log(width)}
+      {/* {console.log(user)} */}
       <nav>
         <NavLink to="/">
           <div className="nav-logo">
@@ -24,16 +28,73 @@ const Navbar = () => {
               <NavLink to="/about">
                 <li>ABOUT</li>
               </NavLink>
-              <NavLink to="/login">
-                <li>LOGIN</li>
-              </NavLink>
+              {user ? (
+                <NavLink to="/login">
+                  <li>
+                    Hi, {user.displayName.split(' ')[0].toUpperCase()}{' '}
+                    <img
+                      src={user.photoURL}
+                      alt="Profile"
+                      style={{
+                        height: '25px',
+                        borderRadius: '5px',
+                        marginLeft: '10px',
+                      }}
+                    />
+                  </li>
+                </NavLink>
+              ) : (
+                <NavLink to="/login">
+                  <li>LOGIN</li>
+                </NavLink>
+              )}
             </ul>
           </div>
         ) : (
           <div className="nav-link">
-            <div style={{ padding: '25px', fontSize: '20px' }}>
-              <i className="bi bi-menu-down"></i>
+            <div
+              style={{ padding: '25px', fontSize: '20px' }}
+              onClick={() => setDropDown(!dropDown)}
+            >
+              {user ? (
+                <img
+                  src={user.photoURL}
+                  alt="Profile"
+                  style={{
+                    height: '25px',
+                    borderRadius: '5px',
+                    marginLeft: '10px',
+                  }}
+                />
+              ) : (
+                <i className="bi bi-menu-down"></i>
+              )}
             </div>
+            {dropDown ? (
+              <div className="nav-link menu-dropdown">
+                <ul>
+                  <NavLink to="/">
+                    <li onClick={() => setDropDown(false)}>HOME</li>
+                  </NavLink>
+                  <NavLink to="/about">
+                    <li onClick={() => setDropDown(false)}>ABOUT</li>
+                  </NavLink>
+                  {user ? (
+                    <NavLink to="/">
+                      <li onClick={() => logout()}>
+                        <i className="bi bi-box-arrow-right"></i>
+                      </li>
+                    </NavLink>
+                  ) : (
+                    <NavLink to="/login">
+                      <li onClick={() => setDropDown(false)}>LOGIN</li>
+                    </NavLink>
+                  )}
+                </ul>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
         )}
       </nav>

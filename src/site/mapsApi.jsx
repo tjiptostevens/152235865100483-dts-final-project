@@ -3,12 +3,12 @@ import { gMapsConfig } from '../config/gMaps'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 
 const center = {
-  lat: -6.9701067,
-  lng: 110.3936025,
+  lat: -6.9698067,
+  lng: 110.3895378,
 }
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '300px',
+  height: '300px',
 }
 
 const MapsApi = () => {
@@ -17,6 +17,22 @@ const MapsApi = () => {
   })
   const [mapRef, setMapRef] = useState(null)
   const onLoad = useCallback((map) => {
+    const success = (position) => {
+      let myLat = position.coords.latitude
+      let myLong = position.coords.longitude
+      let coords = {
+        lat: myLat,
+        lng: myLong,
+      }
+      console.log('current pos', coords)
+      return coords
+    }
+    const failure = (er) => {
+      console.log(er)
+    }
+    let x = navigator.geolocation
+    x.getCurrentPosition(success, failure)
+
     const bounds = new window.google.maps.LatLngBounds(center)
     map.fitBounds(bounds)
     setMapRef(map)
@@ -35,7 +51,7 @@ const MapsApi = () => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={10}
+      zoom={3}
       onLoad={onLoad}
       onCenterChanged={centerChanged}
       onUnmount={onUnmount}

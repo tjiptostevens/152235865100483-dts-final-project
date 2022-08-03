@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../assets/css/footer.css'
+import useWindow from '../custom/useWindow'
 const Footer = () => {
+  const { width } = useWindow()
   return (
     <>
       <div className="w-100">
@@ -39,8 +41,8 @@ const Footer = () => {
               <b>Tetap terkoneksi</b>
             </p>
           </div>
-          <p className="mt-5 mb-3 text-muted">
-            Copyright &copy; 2022. DTS Final Project{' '}
+          <p className="mt-5 mb-3 text-muted" style={{ textAlign: 'center' }}>
+            Copyright &copy; 2022. DTS Final Project{width > 450 ? ' ' : <br />}
             <Link to="" style={{ textDecoration: 'none', color: 'gray' }}>
               Tjipto Steven Senjaya | 152235865100-483
             </Link>
