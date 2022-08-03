@@ -30,40 +30,53 @@ const Hero = () => {
               <div
                 style={{
                   borderBottom: '2px solid white',
-                  width: '50%',
+                  width: '30%',
                   margin: '25px 0',
                 }}
               ></div>
-              <small style={{ fontWeight: '300' }}>
-                <i>DAFTAR SEKARANG</i>
-              </small>
-              <div className="hero-btn-container">
-                <Link to="/login/user">
-                  <button
-                    className="btn btn-light"
-                    style={{
-                      margin: '0 15px',
-                      padding: '5px 50px',
-                      minWidth: '100px',
-                    }}
-                  >
-                    PENGGUNA
-                  </button>
-                </Link>
-                <Link to="/login/mitra">
-                  <button
-                    className="btn btn-light"
-                    style={{
-                      margin: '0 15px',
-                      padding: '5px 50px',
-                      minWidth: '100px',
-                    }}
-                    onMouseEnter={() => setVideo(false)}
-                    onMouseLeave={() => setVideo(true)}
-                  >
-                    MITRA
-                  </button>
-                </Link>
+              {/* Daftar Sekarang */}
+              <div>
+                <small style={{ fontWeight: '300' }}>
+                  <i>DAFTAR SEKARANG</i>
+                </small>
+                <div className="hero-btn-container">
+                  <Link to="/login/user">
+                    <button
+                      className="btn btn-light"
+                      style={{
+                        margin: '0 15px',
+                        padding: '5px 50px',
+                        minWidth: '100px',
+                      }}
+                    >
+                      PENGGUNA
+                    </button>
+                  </Link>
+                  <Link to="/login/mitra">
+                    <button
+                      className="btn btn-light"
+                      style={{
+                        margin: '0 15px',
+                        padding: '5px 50px',
+                        minWidth: '100px',
+                      }}
+                      onMouseEnter={() => setVideo(false)}
+                      onMouseLeave={() => setVideo(true)}
+                    >
+                      MITRA
+                    </button>
+                  </Link>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <input
+                  className="form-control"
+                  type="search"
+                  name="search"
+                  style={{ margin: '0' }}
+                />
+                <button className="btn btn-light">Cari</button>
               </div>
             </div>
           </div>
