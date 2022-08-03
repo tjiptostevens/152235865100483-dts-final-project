@@ -1,3 +1,33 @@
 footer {
     padding: 15px;
 }
+
+.connect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.connect>ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.connect>ul>li>a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 0 10px;
+    transition: all 500ms;
+}
+
+.connect>ul>li>a:hover {
+    color: aqua;
+    font-size: 20px;
+    transition: all 500ms;
+}

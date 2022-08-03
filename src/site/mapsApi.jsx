@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { gMapsConfig } from '../config/gMaps'
-import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api'
 
 const center = {
   lat: -6.9698067,
@@ -57,10 +57,6 @@ const MapsApi = () => {
       onUnmount={onUnmount}
     >
       <></>
-      <InfoWindow
-        content={`count: ${this.props.data}`}
-        position={{ lat: 44, lng: 44 }}
-      ></InfoWindow>
     </GoogleMap>
   ) : (
     <></>

@@ -14,22 +14,22 @@ const Footer = () => {
           </div>
           <div className="w-100" style={{ height: '50px' }}></div>
           <div className="site-map row col-md-12">
-            <div className="col-md-3">
+            <div className="col-md-3 col-6">
               <p>
                 <b>Perusahaan</b>
               </p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-6">
               <p>
                 <b>Bergabung </b>
               </p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-6">
               <p>
                 <b>Karir</b>
               </p>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3 col-6">
               <p>
                 <b>Hubungi kami</b>
               </p>
@@ -40,6 +40,44 @@ const Footer = () => {
             <p>
               <b>Tetap terkoneksi</b>
             </p>
+            <ul>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/tjiptostevens/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-linkedin"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/tjiptostevens/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-github"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/tjiptostevens/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://twitter.com/tjiptostevens"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-twitter"></i>
+                </a>
+              </li>
+            </ul>
           </div>
           <p className="mt-5 mb-3 text-muted" style={{ textAlign: 'center' }}>
             Copyright &copy; 2022. DTS Final Project{width > 450 ? ' ' : <br />}

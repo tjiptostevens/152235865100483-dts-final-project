@@ -13,6 +13,16 @@ nav {
     padding: 15px;
 }
 
+.nav-link img {
+    border: 1px solid white;
+    transition: all 500ms;
+}
+
+.nav-link img:hover {
+    border: 1px solid rgb(68, 68, 68);
+    transition: all 500ms;
+}
+
 .nav-link {
     display: flex;
     justify-content: center;
@@ -35,7 +45,8 @@ nav {
     border: none;
 }
 
-.nav-link>ul>a>li {
+.nav-link>ul>a>li,
+.nav-link>ul>li {
     list-style: none;
     padding: 0 15px;
     transition: all 500ms;

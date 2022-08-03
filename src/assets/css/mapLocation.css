@@ -2,7 +2,7 @@
     position: relative;
     text-align: right;
     height: 500px;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .gmap-canvas {

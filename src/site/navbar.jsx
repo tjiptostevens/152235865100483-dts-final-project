@@ -29,8 +29,8 @@ const Navbar = () => {
                 <li>ABOUT</li>
               </NavLink>
               {user ? (
-                <NavLink to="/login">
-                  <li>
+                <>
+                  <li onClick={() => setDropDown(!dropDown)}>
                     Hi, {user.displayName.split(' ')[0].toUpperCase()}{' '}
                     <img
                       src={user.photoURL}
@@ -42,7 +42,31 @@ const Navbar = () => {
                       }}
                     />
                   </li>
-                </NavLink>
+                  {dropDown ? (
+                    <div
+                      className="nav-link menu-dropdown"
+                      onMouseLeave={() => setDropDown(false)}
+                    >
+                      <ul>
+                        <NavLink to="/profile">
+                          <li onClick={() => setDropDown(false)}>Profile</li>
+                        </NavLink>
+
+                        {user ? (
+                          <NavLink to="/">
+                            <li onClick={() => logout()}>
+                              <i className="bi bi-box-arrow-right"></i>
+                            </li>
+                          </NavLink>
+                        ) : (
+                          ''
+                        )}
+                      </ul>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                </>
               ) : (
                 <NavLink to="/login">
                   <li>LOGIN</li>
