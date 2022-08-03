@@ -15,19 +15,27 @@ const Navbar = () => {
             <img src={logo} alt="logo tambal ban" height="50px" />
           </div>
         </NavLink>
-        <div className="nav-link">
-          <ul>
-            <NavLink to="/">
-              <li>HOME</li>
-            </NavLink>
-            <NavLink to="/about">
-              <li>ABOUT</li>
-            </NavLink>
-            <NavLink to="/login">
-              <li>LOGIN</li>
-            </NavLink>
-          </ul>
-        </div>
+        {width > 450 ? (
+          <div className="nav-link">
+            <ul>
+              <NavLink to="/">
+                <li>HOME</li>
+              </NavLink>
+              <NavLink to="/about">
+                <li>ABOUT</li>
+              </NavLink>
+              <NavLink to="/login">
+                <li>LOGIN</li>
+              </NavLink>
+            </ul>
+          </div>
+        ) : (
+          <div className="nav-link">
+            <div style={{ padding: '25px', fontSize: '20px' }}>
+              <i className="bi bi-menu-down"></i>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   )
