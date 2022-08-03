@@ -1,6 +1,6 @@
 import './App.css'
-import { auth } from './config/firebase'
-import { useAuthState } from 'react-firebase-hooks/auth'
+// import { auth } from './config/firebase'
+// import { useAuthState } from 'react-firebase-hooks/auth'
 import Navbar from './site/navbar'
 import { Routes, Route } from 'react-router-dom'
 import Login from './site/login'
@@ -9,7 +9,7 @@ import './assets/css/modal.css'
 import Footer from './site/footer'
 
 function App() {
-  const [user] = useAuthState(auth)
+  // const [user] = useAuthState(auth)
   return (
     <>
       {/* {console.log(user)} */}
