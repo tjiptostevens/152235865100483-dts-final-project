@@ -13,7 +13,8 @@
 
 .hero-container {
     position: absolute;
-    top: 50%;
+    /* top: 50%; */
+    width: 100%;
 }
 
 .hero-content {

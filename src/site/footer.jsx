@@ -37,7 +37,7 @@ const Footer = () => {
               <b>Tetap terkoneksi</b>
             </p>
           </div>
-          <p className="mt-5 mb-3 text-muted">&copy; 2021-2022</p>{' '}
+          <p className="mt-5 mb-3 text-muted">Copyright &copy; 2022. DTS Final Project Tjipto Steven Senjaya - 152235865100483</p>
         </footer>
       </div>
     </>

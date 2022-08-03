@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import SignIn from './signIn'
+import logo from '../assets/img/logo512.png'
 import '../assets/css/login.css'
 import {
   loginWithEmailPassword,
@@ -92,8 +93,8 @@ const Login = () => {
         >
           <img
             className="mb-4"
-            src="./assets/img/logo512.png"
-            alt=""
+            src={logo}
+            alt="logo kotak"
             width="200"
             height="200"
           />

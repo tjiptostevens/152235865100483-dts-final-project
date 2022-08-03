@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../assets/css/navbar.css'
+import logo from '../assets/img/logoh.png'
 import useWindow from '../custom/useWindow'
 
 const Navbar = () => {
@@ -11,11 +12,7 @@ const Navbar = () => {
       <nav>
         <NavLink to="/">
           <div className="nav-logo">
-            <img
-              src="./assets/img/logoh.png"
-              alt="logo tambal ban"
-              height="50px"
-            />
+            <img src={logo} alt="logo tambal ban" height="50px" />
           </div>
         </NavLink>
         <div className="nav-link">
