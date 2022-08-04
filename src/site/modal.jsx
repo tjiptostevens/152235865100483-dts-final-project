@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const Modal = (props) => {
-  const [vis, setVis] = useState({ vis: false, message: '' })
+  const handleClose = (e) => {
+    props.handleClose(e)
+  }
   return (
     <>
       {props.modal ? (
@@ -13,10 +15,7 @@ const Modal = (props) => {
               <div>
                 <h1>{props.title}</h1>
               </div>
-              <div
-                style={{ cursor: 'pointer' }}
-                onClick={() => setVis({ ...vis, message: '', modal: true })}
-              >
+              <div style={{ cursor: 'pointer' }} onClick={handleClose}>
                 <i className="bi bi-x-square"></i>
               </div>
             </div>

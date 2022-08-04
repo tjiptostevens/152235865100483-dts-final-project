@@ -23,16 +23,15 @@ const Body = () => {
                 </div>
               </div>
               <div className="col-md-9">
-                <div className="list-container ">
+                <div className="list-container">
                   {data.map((d) => (
-                    <div key={d.id} className="list-card-container">
-                      <BodyCard data={d.data} />
-                    </div>
+                    <BodyCard key={d.id} data={d.data} />
                   ))}
                 </div>
               </div>
             </div>
           </div>
+          <div className="w-100" style={{ height: '50px' }}></div>
         </section>
       </>
     )

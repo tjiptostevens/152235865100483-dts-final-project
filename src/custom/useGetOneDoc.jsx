@@ -23,8 +23,8 @@ const useGetOneDoc = (tableName, fieldName, fieldValue) => {
         )
       })
     }, 500)
-  }, [q])
-
+    // eslint-disable-next-line
+  }, [])
   return data
 }
 

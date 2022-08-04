@@ -19,7 +19,9 @@ const useGetAllDoc = (tableName) => {
         )
       })
     }, 500)
-  }, [q])
+    // eslint-disable-next-line
+  }, [])
+
   return data
 }
 
