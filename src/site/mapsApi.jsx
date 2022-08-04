@@ -46,27 +46,27 @@ const MapsApi = () => {
     originRef.current.value = ''
     destinationRef.current.value = ''
   }
-  const onLoad = useCallback((map) => {
-    const success = (position) => {
-      let myLat = position.coords.latitude
-      let myLong = position.coords.longitude
-      let coords = {
-        lat: myLat,
-        lng: myLong,
-      }
-      console.log('current pos', coords)
-      setMapRef(coords)
-      return coords
-    }
-    const failure = (er) => {
-      console.log(er)
-    }
-    let x = navigator.geolocation
-    x.getCurrentPosition(success, failure)
+  // const onLoad = useCallback((map) => {
+  //   const success = (position) => {
+  //     let myLat = position.coords.latitude
+  //     let myLong = position.coords.longitude
+  //     let coords = {
+  //       lat: myLat,
+  //       lng: myLong,
+  //     }
+  //     console.log('current pos', coords)
+  //     setMapRef(coords)
+  //     return coords
+  //   }
+  //   const failure = (er) => {
+  //     console.log(er)
+  //   }
+  //   let x = navigator.geolocation
+  //   x.getCurrentPosition(success, failure)
 
-    // const bounds = new window.google.maps.LatLngBounds(center)
-    // map.fitBounds(bounds)
-  }, [])
+  //   // const bounds = new window.google.maps.LatLngBounds(center)
+  //   // map.fitBounds(bounds)
+  // }, [])
   const centerChanged = () => {
     if (mapRef) {
       const newCenter = mapRef.getCenter()
@@ -85,8 +85,8 @@ const MapsApi = () => {
           center={center}
           zoom={17}
           // onLoad={onLoad}
-          // onCenterChanged={centerChanged}
-          // onUnmount={onUnmount}
+          onCenterChanged={centerChanged}
+          onUnmount={onUnmount}
           options={{
             streetViewControl: false,
             fullscreenControl: false,

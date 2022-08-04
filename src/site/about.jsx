@@ -3,8 +3,8 @@ import '../assets/css/about.css'
 import logo from '../assets/img/logo512.png'
 import video from '../assets/1828402564.mp4'
 import Video from '../components/video'
-import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api'
-import { gMapsConfig } from '../config/gMaps'
+import { GoogleMap, Marker } from '@react-google-maps/api'
+import { IsLoaded } from '../config/gMaps'
 
 const center = {
   lat: -6.9698067,
@@ -12,10 +12,6 @@ const center = {
 }
 
 const About = () => {
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: gMapsConfig.API_KEY,
-  })
-
   return (
     <>
       <div className="w-100">
@@ -61,7 +57,7 @@ const About = () => {
             </div>
 
             <div className="col-md-4">
-              {isLoaded ? (
+              {IsLoaded ? (
                 <GoogleMap
                   center={center}
                   zoom={15}
