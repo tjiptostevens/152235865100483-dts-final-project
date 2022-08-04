@@ -8,7 +8,14 @@ const MitraInfo = () => {
 
   return (
     <>
-      <Modal title={'Daftar Mitra'} modal={true} element={<MitraForm />} />
+      <Modal
+        title={'Daftar Mitra'}
+        modal={vis.modal}
+        handleClose={(e) => setVis({ ...vis, modal: true })}
+        element={
+          <MitraForm handleClose={(e) => setVis({ ...vis, modal: true })} />
+        }
+      />
       <div className="w-100">
         <div className="mitra-container">
           <div
