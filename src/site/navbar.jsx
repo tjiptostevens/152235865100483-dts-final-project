@@ -57,7 +57,9 @@ const Navbar = () => {
                     >
                       <ul>
                         <NavLink exact to="/profile">
-                          <li onClick={() => setDropDown(false)}>PROFIL</li>
+                          <li onClick={() => setDropDown(false)}>
+                            PROFIL SAYA
+                          </li>
                         </NavLink>
                         |
                         <NavLink exact to="/mitra">

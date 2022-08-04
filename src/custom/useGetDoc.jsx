@@ -9,6 +9,7 @@ const useGetDoc = (tableName, orderField, limitData) => {
   const dataRef = collection(db, tableName)
   const q = query(dataRef, orderBy(orderField), limit(limitData))
   const [data] = useCollectionData(q, { idField: 'id' })
+  console.log(data)
 
   return { data, dataRef }
 }

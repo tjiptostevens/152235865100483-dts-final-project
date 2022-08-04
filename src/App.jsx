@@ -9,6 +9,8 @@ import './assets/css/modal.css'
 import Footer from './site/footer'
 import About from './site/about'
 import Contact from './site/contact'
+import Profile from './site/profile'
+import Mitra from './site/mitra'
 
 function App() {
   // const [user] = useAuthState(auth)
@@ -20,7 +22,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<About />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/mitra" element={<Mitra />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
