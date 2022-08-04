@@ -7,6 +7,7 @@ import Login from './site/login'
 import Home from './site/home'
 import './assets/css/modal.css'
 import Footer from './site/footer'
+import About from './site/about'
 
 function App() {
   // const [user] = useAuthState(auth)
@@ -17,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/login/:userType" element={<Login />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
     </>

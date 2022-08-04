@@ -6,9 +6,9 @@ const Footer = () => {
   const { width } = useWindow()
   return (
     <>
-      <div className="w-100">
+      <div className="w-100" style={{ borderTop: '2px solid aqua' }}>
         <footer>
-          <div className="w-100" style={{ height: '50px' }}></div>
+          <div className="w-100" style={{ height: '25px' }}></div>
           <div className="logo">
             <img src="./assets/img/logoh.png" alt="logo" height="50px" />
           </div>
@@ -35,7 +35,11 @@ const Footer = () => {
               </p>
             </div>
           </div>
+
+          <div className="w-100" style={{ height: '25px' }}></div>
           <hr />
+
+          <div className="w-100" style={{ height: '25px' }}></div>
           <div className="connect col-md-12">
             <p>
               <b>Tetap terkoneksi</b>

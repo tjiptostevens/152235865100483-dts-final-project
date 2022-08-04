@@ -1,17 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../assets/css/hero.css'
-import video1 from '../assets/2703043068.mp4'
-import video2 from '../assets/1828402564.mp4'
+import video from '../assets/2703043068.mp4'
 import Video from '../components/video'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
-  const [video] = useState(true)
-
   return (
     <>
       <div className="hero">
-        {video ? <Video video={video1} /> : <Video video={video2} />}
+        <Video video={video} />
         <div className="hero-container">
           <div className="hero-content">
             <div
@@ -48,47 +45,8 @@ const Hero = () => {
                   <small style={{ fontWeight: '300' }}>
                     <i>DAFTAR SEKARANG</i>
                   </small>
-                  {/* <div className="hero-btn-container">
-                  <Link to="/login/user">
-                    <button
-                      className="btn btn-light"
-                      style={{
-                        margin: '0 15px',
-                        padding: '5px 50px',
-                        minWidth: '100px',
-                      }}
-                    >
-                      PENGGUNA
-                    </button>
-                  </Link>
-                  <Link to="/login/mitra">
-                    <button
-                      className="btn btn-light"
-                      style={{
-                        margin: '0 15px',
-                        padding: '5px 50px',
-                        minWidth: '100px',
-                      }}
-                      onMouseEnter={() => setVideo(false)}
-                      onMouseLeave={() => setVideo(true)}
-                    >
-                      MITRA
-                    </button>
-                  </Link>
-                </div> */}
                 </div>
               </Link>
-
-              {/* search */}
-              {/* <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <input
-                  className="form-control"
-                  type="search"
-                  name="search"
-                  style={{ margin: '0' }}
-                />
-                <button className="btn btn-light">Cari</button>
-              </div> */}
             </div>
           </div>
         </div>
