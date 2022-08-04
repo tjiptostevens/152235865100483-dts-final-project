@@ -24,7 +24,7 @@ const About = () => {
           <div className="w-100" style={{ height: '50px' }}></div>
           <div className="row col-md-12">
             <div
-              className="col-md-4"
+              className="col-md-3"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -55,7 +55,7 @@ const About = () => {
                 terdekat beserta harga nya.
               </p>
             </div>
-
+            <div className="col-md-1"></div>
             <div className="col-md-4">
               {IsLoaded ? (
                 <GoogleMap
