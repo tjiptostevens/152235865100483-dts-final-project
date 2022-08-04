@@ -48,11 +48,24 @@ const About = () => {
                 berfokus kepada layanan prima tambal ban bergaransi baik motor
                 maupun mobil. Usaha ini menggunakan teknologi untuk mempermudah
                 dalam memberikan layanan tambal ban ke tempat kejadian.
-                <br />
+              </p>
+              <p>
                 TAMBAL BAN menggunakan teknologi dari google yakni Geo Location
                 untuk dapat mem'pin point lokasi anda. Juga menggunakan
                 teknologi lainnya untuk memberikan informasi tempat tambal ban
                 terdekat beserta harga nya.
+              </p>
+              <br />
+              <p style={{ lineHeight: '1.2' }}>
+                Office : <br />
+                <b style={{ padding: '15px' }}>PT. Superhore Tambal Ban</b>
+                <br />
+                <small style={{ padding: '15px' }}>
+                  Jl. Superhore Blok A1, No. 7 <br />
+                </small>
+                <small style={{ padding: '15px' }}>
+                  Semarang - Jawa Tengah
+                </small>
               </p>
             </div>
             <div className="col-md-1"></div>

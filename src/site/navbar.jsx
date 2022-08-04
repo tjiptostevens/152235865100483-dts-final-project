@@ -14,7 +14,7 @@ const Navbar = () => {
     <>
       {/* {console.log(user)} */}
       <nav>
-        <NavLink exact to="/">
+        <NavLink to="/">
           <div className="nav-logo">
             <img src={logo} alt="logo tambal ban" height="50px" />
           </div>
@@ -23,14 +23,12 @@ const Navbar = () => {
           <div className="nav-link">
             <ul>
               <NavLink
-                exact
                 to="/"
                 className={(isActive) => (isActive ? 'nav-link-active' : ' ')}
               >
                 <li>HOME</li>
               </NavLink>
               <NavLink
-                exact
                 to="/about"
                 className={(isActive) => (isActive ? 'nav-link-active' : ' ')}
               >
@@ -56,18 +54,18 @@ const Navbar = () => {
                       onMouseLeave={() => setDropDown(false)}
                     >
                       <ul>
-                        <NavLink exact to="/profile">
+                        <NavLink to="/profile">
                           <li onClick={() => setDropDown(false)}>
                             PROFIL SAYA
                           </li>
                         </NavLink>
                         |
-                        <NavLink exact to="/mitra">
+                        <NavLink to="/mitra">
                           <li onClick={() => setDropDown(false)}>KEMITRAAN</li>
                         </NavLink>
                         |
                         {user ? (
-                          <NavLink exact to="/">
+                          <NavLink to="/">
                             <li onClick={() => logout()}>
                               <i className="bi bi-box-arrow-right"></i>
                             </li>
@@ -82,7 +80,7 @@ const Navbar = () => {
                   )}
                 </>
               ) : (
-                <NavLink exact to="/login">
+                <NavLink to="/login">
                   <li>LOGIN</li>
                 </NavLink>
               )}
@@ -111,32 +109,32 @@ const Navbar = () => {
             {dropDown ? (
               <div className="nav-link menu-dropdown">
                 <ul>
-                  <NavLink exact to="/">
+                  <NavLink to="/">
                     <li onClick={() => setDropDown(false)}>
                       <i className="bi bi-house"></i>
                     </li>
                   </NavLink>
                   |
-                  <NavLink exact to="/about">
+                  <NavLink to="/about">
                     <li onClick={() => setDropDown(false)}>ABOUT</li>
                   </NavLink>
                   |
-                  <NavLink exact to="/profile">
+                  <NavLink to="/profile">
                     <li onClick={() => setDropDown(false)}>PROFILE</li>
                   </NavLink>
                   |
-                  <NavLink exact to="/mitra">
+                  <NavLink to="/mitra">
                     <li onClick={() => setDropDown(false)}>KEMITRAAN</li>
                   </NavLink>
                   |
                   {user ? (
-                    <NavLink exact to="/">
+                    <NavLink to="/">
                       <li onClick={() => logout()}>
                         <i className="bi bi-box-arrow-right"></i>
                       </li>
                     </NavLink>
                   ) : (
-                    <NavLink exact to="/login">
+                    <NavLink to="/login">
                       <li onClick={() => setDropDown(false)}>LOGIN</li>
                     </NavLink>
                   )}

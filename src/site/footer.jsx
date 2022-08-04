@@ -29,7 +29,9 @@ const Footer = () => {
                 <b>Bergabung </b>
               </p>
               <ul>
-                <li>INFO KEMITRAAN</li>
+                <Link to="mitra">
+                  <li>INFO KEMITRAAN</li>
+                </Link>
               </ul>
             </div>
             <div className="col-md-3 col-6">

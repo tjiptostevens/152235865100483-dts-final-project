@@ -1,28 +1,34 @@
 import { db } from '../config/firebase'
-import { collection, query, where } from 'firebase/firestore'
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-// import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const useGetAllDoc = (tableName, fieldName, fieldValue) => {
-  // const [da, setDa] = useState('')
+  const [data, setData] = useState('')
   const q = query(collection(db, tableName), where(fieldName, '==', fieldValue))
-  const [data] = useCollectionData(q, { idField: 'id' })
+  // const [data] = useCollectionData(q, { idField: 'id' })
 
-  // setTimeout(async () => {
-  //   let data = []
-  //   try {
-  //     const dataRef = await getDocs(q)
-  //     dataRef.forEach((doc) => {
-  //       let y = doc.data()
-  //       let z = { id: doc.id, ...y }
-  //       data.push(z)
-  //     })
-  //     console.log(data)
-  //     // return setDa(() => data[0])
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }, 500)
+  useEffect(() => {
+    setTimeout(() => {
+      // const q = query(collection(db, tableName), orderBy('created', 'desc'),  where(fieldName, '==', fieldValue))
+      onSnapshot(q, (querySnapshot) => {
+        setData(
+          querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          })),
+        )
+      })
+    }, 500)
+  }, [])
+
+  // console.log(data)
   return data
 }
 
