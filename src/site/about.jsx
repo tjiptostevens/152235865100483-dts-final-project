@@ -3,7 +3,19 @@ import '../assets/css/about.css'
 import logo from '../assets/img/logo512.png'
 import video from '../assets/1828402564.mp4'
 import Video from '../components/video'
+import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api'
+import { gMapsConfig } from '../config/gMaps'
+
+const center = {
+  lat: -6.9698067,
+  lng: 110.3895378,
+}
+
 const About = () => {
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: gMapsConfig.API_KEY,
+  })
+
   return (
     <>
       <div className="w-100">
@@ -15,7 +27,6 @@ const About = () => {
           <h1>Tentang Kami</h1>
           <div className="w-100" style={{ height: '50px' }}></div>
           <div className="row col-md-12">
-            <div className="col-md-2"></div>
             <div
               className="col-md-4"
               style={{
@@ -44,12 +55,29 @@ const About = () => {
                 <br />
                 TAMBAL BAN menggunakan teknologi dari google yakni Geo Location
                 untuk dapat mem'pin point lokasi anda. Juga menggunakan
-                teknologi lainnya untuk memberikan data tempat tambal ban
+                teknologi lainnya untuk memberikan informasi tempat tambal ban
                 terdekat beserta harga nya.
               </p>
             </div>
 
-            <div className="col-md-2"></div>
+            <div className="col-md-4">
+              {isLoaded ? (
+                <GoogleMap
+                  center={center}
+                  zoom={15}
+                  mapContainerStyle={{ width: '100%', minHeight: '300px' }}
+                  options={{
+                    streetViewControl: false,
+                    fullscreenControl: false,
+                    mapTypeControl: false,
+                  }}
+                >
+                  <Marker position={center} />
+                </GoogleMap>
+              ) : (
+                ''
+              )}
+            </div>
           </div>
           <div className="w-100" style={{ height: '50px' }}></div>
         </div>

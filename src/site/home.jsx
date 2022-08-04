@@ -3,7 +3,6 @@ import { auth } from '../config/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import Body from './body'
 import Hero from './hero'
-import MapLocation from './mapLocation'
 import MapsApi from './mapsApi'
 
 const Home = () => {
@@ -13,7 +12,7 @@ const Home = () => {
       {user ? '' : <Hero />}
       <Body />
       <MapsApi />
-      <MapLocation />
+      {/* <MapLocation /> */}
     </>
   )
 }

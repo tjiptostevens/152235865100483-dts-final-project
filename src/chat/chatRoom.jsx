@@ -1,25 +1,12 @@
 import React, { useRef, useState } from 'react'
-import { auth, db } from '../config/firebase'
-import {
-  collection,
-  query,
-  orderBy,
-  limit,
-  addDoc,
-  serverTimestamp,
-} from 'firebase/firestore'
-// import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { auth } from '../config/firebase'
+import { addDoc, serverTimestamp } from 'firebase/firestore'
 import ChatMessage from './chatMessage'
 import SignOut from '../site/signOut'
+import useGetDoc from '../custom/useGetDoc'
 
 const ChatRoom = () => {
-  // const [user] = useAuthState(auth)
-
-  const messagesRef = collection(db, 'messages')
-  const q = query(messagesRef, orderBy('createdAt'), limit(25))
-
-  const [messages] = useCollectionData(q, { idField: 'id' })
+  const { data, dataRef } = useGetDoc('messages', 'createdAt', 25)
 
   const [formValue, setFormValue] = useState('')
 
@@ -31,7 +18,7 @@ const ChatRoom = () => {
     const { uid, photoURL } = auth.currentUser
     try {
       // create new document to firestore
-      await addDoc(messagesRef, {
+      await addDoc(dataRef, {
         id: +new Date(),
         text: formValue,
         createdAt: serverTimestamp(),
@@ -47,11 +34,11 @@ const ChatRoom = () => {
 
   return (
     <>
+      {/* {console.log('data', data)}
+      {console.log('ref', dataRef)} */}
       <SignOut />
       <div>
-        {console.log(messages)}
-        {messages &&
-          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
+        {data && data.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
         <div ref={dummy}></div>
       </div>
       <form onSubmit={sendMessage}>

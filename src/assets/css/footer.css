@@ -2,6 +2,20 @@ footer {
     padding: 25px;
 }
 
+ul {
+    padding: 0 15px;
+}
+
+ul>li,
+ul>a,
+ul>a>li {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
 .connect {
     display: flex;
     flex-direction: column;

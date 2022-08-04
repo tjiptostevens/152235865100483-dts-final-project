@@ -34,7 +34,7 @@ const Navbar = () => {
                 to="/about"
                 className={(isActive) => (isActive ? 'nav-link-active' : ' ')}
               >
-                <li>ABOUT</li>
+                <li>PROFIL PERUSAHAAN</li>
               </NavLink>
               {user ? (
                 <>
@@ -57,7 +57,7 @@ const Navbar = () => {
                     >
                       <ul>
                         <NavLink exact to="/profile">
-                          <li onClick={() => setDropDown(false)}>PROFILE</li>
+                          <li onClick={() => setDropDown(false)}>PROFIL</li>
                         </NavLink>
                         |
                         <NavLink exact to="/mitra">

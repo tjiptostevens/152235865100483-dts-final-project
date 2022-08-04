@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react'
-import { API_URL } from '../config/config'
+// import { useState } from 'react'
+import { db } from '../config/firebase'
+import { collection, query, orderBy, limit } from 'firebase/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 
-const useFetch = (url) => {
-  const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
+const useGetDoc = (tableName, orderField, limitData) => {
+  // const [error, setError] = useState(null)
 
-  return { data, isLoading, error }
+  const dataRef = collection(db, tableName)
+  const q = query(dataRef, orderBy(orderField), limit(limitData))
+  const [data] = useCollectionData(q, { idField: 'id' })
+
+  return { data, dataRef }
 }
 
-export default useFetch
+export default useGetDoc

@@ -18,21 +18,35 @@ const Footer = () => {
               <p>
                 <b>Perusahaan</b>
               </p>
+              <ul>
+                <Link to="about">
+                  <li>TENTANG</li>
+                </Link>
+              </ul>
             </div>
             <div className="col-md-3 col-6">
               <p>
                 <b>Bergabung </b>
               </p>
+              <ul>
+                <li>INFO KEMITRAAN</li>
+              </ul>
             </div>
             <div className="col-md-3 col-6">
               <p>
                 <b>Karir</b>
               </p>
+              <ul>
+                <li>DEVELOPER</li>
+              </ul>
             </div>
             <div className="col-md-3 col-6">
               <p>
                 <b>Hubungi kami</b>
               </p>
+              <ul>
+                <li>KONTAK</li>
+              </ul>
             </div>
           </div>
 
