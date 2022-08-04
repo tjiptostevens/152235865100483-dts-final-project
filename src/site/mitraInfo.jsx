@@ -8,7 +8,7 @@ const MitraInfo = () => {
 
   return (
     <>
-      <Modal title={'Daftar Mitra'} modal={vis.modal} element={<MitraForm />} />
+      <Modal title={'Daftar Mitra'} modal={true} element={<MitraForm />} />
       <div className="w-100">
         <div className="mitra-container">
           <div

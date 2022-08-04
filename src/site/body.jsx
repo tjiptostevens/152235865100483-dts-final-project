@@ -1,28 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../assets/css/body.css'
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
-import { db } from '../config/firebase'
 import useGetAllDoc from '../custom/useGetAllDoc'
 
 const Body = () => {
-  // const data = useGetAllDoc('messages')
-  const [data, setData] = useState('')
-  useEffect(() => {
-    const q = query(collection(db, 'mitras'), orderBy('created', 'desc'))
-    onSnapshot(q, (querySnapshot) => {
-      setData(
-        querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        })),
-      )
-    })
-  }, [])
+  const data = useGetAllDoc('mitras')
+
   return (
     <>
       {console.log(data)}
       <section className="body-container">
-        <div className="w-100"></div>
+        <div className="w-100">
+          <div className="list"></div>
+          <div className="list-detail">{JSON.stringify(data)}</div>
+        </div>
       </section>
     </>
   )
