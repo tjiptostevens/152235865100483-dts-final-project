@@ -13,15 +13,15 @@ const IsLoaded = () => {
   return isLoaded
 }
 
-const getPosition = () => {
+const GetPosition = () => {
+  const [data, setData] = useState('')
   const success = (position) => {
     let myLat = position.coords.latitude
     let myLong = position.coords.longitude
-    let coords = {
-      lat: myLat,
-      lng: myLong,
-    }
-    console.log('current pos', coords)
+    let coords = myLat + ', ' + myLong
+    setData(myLat + ',' + myLong)
+
+    // console.log('current pos', coords)
     return coords
   }
   const failure = (er) => {
@@ -29,12 +29,15 @@ const getPosition = () => {
   }
   let x = navigator.geolocation
   x.getCurrentPosition(success, failure)
+  return { data }
 }
 const CalculateRoute = async (destinationRef) => {
   const [direction, setDirection] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
-  let originRef = getPosition()
+  let originRef = GetPosition()
+  console.log(originRef)
+  // let originRef = originRe && `${originRe.lat},${originRef.lng}`
   if (originRef === '' || destinationRef === '') {
     return
   }
@@ -44,6 +47,7 @@ const CalculateRoute = async (destinationRef) => {
     destination: destinationRef,
     travelMode: window.google.maps.TravelMode.WALKING,
   })
+  console.log(results)
   setDirection(results)
   setDistance(results.routes[0].legs[0].distance.text)
   setDuration(results.routes[0].legs[0].duration.text)

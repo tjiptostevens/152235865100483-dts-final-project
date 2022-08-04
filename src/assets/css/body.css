@@ -3,6 +3,11 @@
     background-color: rgb(241, 241, 241);
 }
 
+.list-filter {
+    color: black;
+    padding: 15px 25px;
+}
+
 .list-container {
     display: flex;
     flex-direction: row;
@@ -13,14 +18,15 @@
     display: flex;
     flex-direction: row;
     padding: 5px;
-    height: 150px;
-    width: 350px;
+    min-height: 150px;
+    width: 30%;
 }
 
 .list-map {
     border-radius: 7px 0 0 7px;
     background-color: aqua;
     border: 1px solid aqua;
+    min-width: 100px;
     width: 30%;
     height: inherit;
 }

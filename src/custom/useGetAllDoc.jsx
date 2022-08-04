@@ -19,7 +19,7 @@ const useGetAllDoc = (tableName) => {
         )
       })
     }, 500)
-  })
+  }, [q])
   return data
 }
 

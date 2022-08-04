@@ -95,79 +95,80 @@ const MapsApi = () => {
   //   console.log('unmount', map)
   //   setMapRef(null)
   // }, [])
-  return isLoaded ? (
-    <>
-      <div style={{ position: 'relative' }}>
-        <GoogleMap
-          mapContainerStyle={{ width: '100%', minHeight: '300px' }}
-          center={center}
-          zoom={17}
-          // onLoad={onLoad}
-          // onCenterChanged={centerChanged}
-          // onUnmount={onUnmount}
-          options={{
-            streetViewControl: false,
-            fullscreenControl: false,
-            mapTypeControl: false,
-          }}
-          onLoad={(map) => setMapRef(map)}
-        >
-          <Marker position={center} />
-          {direction === null ? (
-            ''
-          ) : (
-            <DirectionsRenderer directions={direction} />
-          )}
-        </GoogleMap>
-        <div
-          className="btn-center"
-          onClick={async (e) => {
-            await centerChanged(e)
-            mapRef.panTo(center)
-          }}
-        >
-          <i className="bi bi-cursor-fill"></i>
+  return (
+    isLoaded && (
+      <>
+        {/* {console.log(IsLoaded)} */}
+        <div style={{ position: 'relative' }}>
+          <GoogleMap
+            mapContainerStyle={{ width: '100%', minHeight: '300px' }}
+            center={center}
+            zoom={17}
+            // onLoad={onLoad}
+            // onCenterChanged={centerChanged}
+            // onUnmount={onUnmount}
+            options={{
+              streetViewControl: false,
+              fullscreenControl: false,
+              mapTypeControl: false,
+            }}
+            onLoad={(map) => setMapRef(map)}
+          >
+            <Marker position={center} />
+            {direction === null ? (
+              ''
+            ) : (
+              <DirectionsRenderer directions={direction} />
+            )}
+          </GoogleMap>
+          <div
+            className="btn-center"
+            onClick={async (e) => {
+              await centerChanged(e)
+              mapRef.panTo(center)
+            }}
+          >
+            <i className="bi bi-cursor-fill"></i>
+          </div>
+          <div className="map-input">
+            <form>
+              <Autocomplete>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="origin"
+                  defaultValue={`${center.lat}, ${center.lng}`}
+                  ref={originRef}
+                  required
+                />
+              </Autocomplete>
+              <Autocomplete>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="destination"
+                  ref={destinationRef}
+                  required
+                />
+              </Autocomplete>
+              <button className="btn btn-warning" onClick={calculateRoute}>
+                Calculate
+              </button>
+              <button className="btn btn-danger" onClick={clearRoute}>
+                <i className="bi bi-x-square"></i>
+              </button>
+              <button className="btn btn-primary" onClick={centerChanged}>
+                <i className="bi bi-asterisk"></i>
+              </button>
+            </form>
+            <br />
+            <p>
+              {distance} - {duration}
+            </p>
+          </div>
         </div>
-        <div className="map-input">
-          <form>
-            <Autocomplete>
-              <input
-                className="form-control"
-                type="text"
-                name="origin"
-                defaultValue={`${center.lat}, ${center.lng}`}
-                ref={originRef}
-                required
-              />
-            </Autocomplete>
-            <Autocomplete>
-              <input
-                className="form-control"
-                type="text"
-                name="destination"
-                ref={destinationRef}
-                required
-              />
-            </Autocomplete>
-            <button className="btn btn-warning" onClick={calculateRoute}>
-              Calculate
-            </button>
-            <button className="btn btn-danger" onClick={clearRoute}>
-              <i className="bi bi-x-square"></i>
-            </button>
-            <button className="btn btn-primary" onClick={centerChanged}>
-              <i className="bi bi-asterisk"></i>
-            </button>
-          </form>
-          <br />
-          <p>
-            {distance} - {duration}
-          </p>
-        </div>
-      </div>
-    </>
-  ) : (
-    <></>
+      </>
+    )
   )
 }
 

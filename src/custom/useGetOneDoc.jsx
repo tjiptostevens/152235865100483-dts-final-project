@@ -23,7 +23,7 @@ const useGetOneDoc = (tableName, fieldName, fieldValue) => {
         )
       })
     }, 500)
-  })
+  }, [q])
 
   return data
 }
