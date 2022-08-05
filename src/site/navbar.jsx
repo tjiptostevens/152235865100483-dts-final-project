@@ -12,7 +12,7 @@ const Navbar = () => {
   const { width } = useWindow()
   return (
     <>
-      {/* {console.log(user)} */}
+      {/* {console.log(data)} */}
       <nav>
         <NavLink to="/">
           <div className="nav-logo">
@@ -37,7 +37,10 @@ const Navbar = () => {
               {user ? (
                 <>
                   <li onClick={() => setDropDown(!dropDown)}>
-                    Hi, {user.displayName.split(' ')[0].toUpperCase()}{' '}
+                    Hi,{' '}
+                    {user.displayName
+                      ? user.displayName.split(' ')[0].toUpperCase()
+                      : 'user'}{' '}
                     <img
                       src={user.photoURL}
                       alt="Profile"
