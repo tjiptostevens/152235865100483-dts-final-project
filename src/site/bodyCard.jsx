@@ -6,7 +6,7 @@ import useWindow from '../custom/useWindow'
 const BodyCard = (props) => {
   const { width } = useWindow()
   const [vis, setVis] = useState({ modal: true })
-  const { distance, duration } = CalculateRoute(props.data.latlng)
+  const { direction, distance, duration } = CalculateRoute(props.data.latlng)
   return (
     <>
       <Modal
@@ -21,6 +21,7 @@ const BodyCard = (props) => {
         }
         handleClose={() => setVis({ ...vis, modal: !vis.modal })}
       />
+      {console.log(direction, distance, duration)}
       <div
         className={width > 450 ? `list-card-container` : 'col-12 '}
         onClick={() => setVis({ ...vis, modal: !vis.modal })}

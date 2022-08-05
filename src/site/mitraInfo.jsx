@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
+import { auth } from '../config/firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import mechanic from '../assets/img/mechanic.webp'
 import Modal from './modal'
 import MitraForm from './mitraForm'
+import { useNavigate } from 'react-router-dom'
 
 const MitraInfo = () => {
+  const navigate = useNavigate()
+  const [user] = useAuthState(auth)
   const [vis, setVis] = useState({ modal: true, message: '' })
 
   return (
@@ -46,7 +51,11 @@ const MitraInfo = () => {
               <button
                 className="btn btn-light"
                 style={{ alignSelf: 'flex-start' }}
-                onClick={() => setVis({ ...vis, modal: false })}
+                onClick={() =>
+                  user
+                    ? setVis({ ...vis, modal: false })
+                    : navigate('/login', { replace: true })
+                }
               >
                 Daftar Mitra
               </button>

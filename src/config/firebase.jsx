@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth'
-import { doc, getFirestore, setDoc } from 'firebase/firestore'
+import { addDoc, doc, getFirestore, updateDoc } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -33,15 +33,28 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const db = getFirestore(app)
 
-const signInWithGoogle = () => {
-  const provider = new GoogleAuthProvider()
-  signInWithPopup(auth, provider)
+const signInWithGoogle = async () => {
+  try {
+    const provider = new GoogleAuthProvider()
+    const user = await signInWithPopup(auth, provider)
+    console.log('user : ' + user)
+    await addDoc(doc(db, 'users', user.user.uid), {
+      uid: user.user.uid,
+      displayName: 'User',
+      photoURL: user.user.photoURL,
+      isOnline: true,
+    })
+  } catch (error) {
+    console.log('error code : ' + error.code)
+    console.log('error message : ' + error.message)
+    return error
+  }
 }
 const registerWithEmailPassword = async (email, password) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password)
     console.log('user : ' + user.user)
-    await setDoc(doc(db, 'users', user.user.uid), {
+    await addDoc(doc(db, 'users', user.user.uid), {
       uid: user.user.uid,
       displayName: 'User',
       photoURL: user.user.photoURL,
@@ -59,6 +72,9 @@ const loginWithEmailPassword = async (email, password) => {
   try {
     const user = await signInWithEmailAndPassword(auth, email, password)
     console.log('user : ' + user.email)
+    await updateDoc(doc(db, 'users', user.user.uid), {
+      isOnline: true,
+    })
     return user
   } catch (error) {
     console.log('error code : ' + error.code)
@@ -80,6 +96,9 @@ const forgotPassword = async (email) => {
 const logout = async () => {
   try {
     const user = await signOut(auth)
+    await updateDoc(doc(db, 'users', user.user.uid), {
+      isOnline: false,
+    })
     console.log('user : ' + user)
   } catch (error) {
     console.log('error code : ' + error.code)

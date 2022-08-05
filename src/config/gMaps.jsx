@@ -15,42 +15,51 @@ const IsLoaded = () => {
 
 const GetPosition = () => {
   const [data, setData] = useState('')
-  const success = (position) => {
-    let myLat = position.coords.latitude
-    let myLong = position.coords.longitude
-    let coords = myLat + ', ' + myLong
-    setData(myLat + ',' + myLong)
+  try {
+    const success = (position) => {
+      let myLat = position.coords.latitude
+      let myLong = position.coords.longitude
+      let coords = myLat + ', ' + myLong
+      setData(myLat + ',' + myLong)
 
-    // console.log('current pos', coords)
-    return coords
+      // console.log('current pos', coords)
+      return coords
+    }
+    const failure = (er) => {
+      console.log(er)
+    }
+    let x = navigator.geolocation
+    x.getCurrentPosition(success, failure)
+    return { data }
+  } catch (error) {
+    console.log(error)
   }
-  const failure = (er) => {
-    console.log(er)
-  }
-  let x = navigator.geolocation
-  x.getCurrentPosition(success, failure)
-  return { data }
 }
 const CalculateRoute = async (destinationRef) => {
   const [direction, setDirection] = useState(null)
   const [distance, setDistance] = useState('')
   const [duration, setDuration] = useState('')
   let originRef = GetPosition()
-  console.log(originRef)
+  console.log(originRef.data)
   // let originRef = originRe && `${originRe.lat},${originRef.lng}`
-  if (originRef === '' || destinationRef === '') {
+  if (originRef.data === '' || destinationRef === '') {
     return
+  } else {
+    try {
+      const directionService = new window.google.maps.DirectionsService()
+      const results = await directionService.route({
+        origin: originRef.data,
+        destination: destinationRef,
+        travelMode: window.google.maps.TravelMode.WALKING,
+      })
+      console.log(results)
+      setDirection(results)
+      setDistance(results.routes[0].legs[0].distance.text)
+      setDuration(results.routes[0].legs[0].duration.text)
+      return { direction, distance, duration }
+    } catch (error) {
+      console.log(error)
+    }
   }
-  const directionService = new window.google.maps.DirectionsService()
-  const results = await directionService.route({
-    origin: originRef,
-    destination: destinationRef,
-    travelMode: window.google.maps.TravelMode.WALKING,
-  })
-  console.log(results)
-  setDirection(results)
-  setDistance(results.routes[0].legs[0].distance.text)
-  setDuration(results.routes[0].legs[0].duration.text)
-  return { direction, distance, duration }
 }
 export { IsLoaded, CalculateRoute }

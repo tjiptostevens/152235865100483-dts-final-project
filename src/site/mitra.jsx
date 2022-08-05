@@ -11,7 +11,7 @@ const Mitra = () => {
   const data = useGetOneDoc('mitras', 'uid', user ? user.uid : 0)
   return (
     <>
-      {user && data.length === 0 ? <MitraInfo /> : ''}
+      {!user || (user && data.length) === 0 ? <MitraInfo /> : ''}
       {console.log(data)}
       {data.length >= 1 && <MitraDetail data={data[0]} />}
     </>
