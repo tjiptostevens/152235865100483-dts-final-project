@@ -10,7 +10,7 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+import { doc, getFirestore, setDoc } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -41,6 +41,12 @@ const registerWithEmailPassword = async (email, password) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password)
     console.log('user : ' + user.user)
+    await setDoc(doc(db, 'users', user.user.uid), {
+      uid: user.user.uid,
+      displayName: 'User',
+      photoURL: user.user.photoURL,
+      isOnline: false,
+    })
     return user
   } catch (error) {
     console.log('error code : ' + error.code)

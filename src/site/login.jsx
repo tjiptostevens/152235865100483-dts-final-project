@@ -23,22 +23,20 @@ const Login = () => {
     vis: true,
     logOrReg: false,
   })
-  // useEffect(() => {
-  //   if (userType === undefined) {
-  //     return
-  //   } else {
-  //     // functional setData
-  //     return setData((prev) => ({ ...prev, logOrReg: true, type: userType }))
-  //   }
-  // }, [userType])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let msg = await loginWithEmailPassword(data.email, data.password)
-    console.log(msg)
-    setData({ ...data, message: msg.name + ' : ' + msg.code, vis: false })
+    setData({ ...data, error: null, loading: true })
+    let msg = ''
+    try {
+      msg = await loginWithEmailPassword(data.email, data.password)
+      console.log(msg)
+    } catch (error) {
+      setData({ ...data, message: msg.name + ' : ' + msg.code, vis: false })
+    }
   }
   const handleRegister = async (e) => {
+    e.preventDefault()
     let msg = await registerWithEmailPassword(data.email, data.password)
     setData({ ...data, message: msg.name + ' : ' + msg.code })
   }
